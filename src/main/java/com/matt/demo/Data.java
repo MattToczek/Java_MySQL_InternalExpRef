@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Data {
 
-    public ArrayList<People> API = new ArrayList<>();
+    public People[] API = new People[10];
 
     public Data(){
 
@@ -25,10 +25,11 @@ public class Data {
             // sets up statement through which the db can be queried
             Statement stmt=connect.createStatement();
             ResultSet rs=stmt.executeQuery("select * from info");
-
-            while(rs.next())
-
-                API.add(new People(rs.getInt(1), rs.getString(2), rs.getString(3)));
+            int i =0;
+            while(rs.next()){
+                API[i] = new People(rs.getInt(1), rs.getString(2), rs.getString(3));
+                i++;
+            }
 
                 //concat each column into a ln and sys out
                 //System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
@@ -40,7 +41,7 @@ public class Data {
 
     }
 
-    public ArrayList<People> getApi(){
+    public People[] getApi(){
         return API;
     }
 }
