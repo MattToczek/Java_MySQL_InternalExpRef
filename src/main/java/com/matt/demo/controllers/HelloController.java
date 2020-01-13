@@ -10,9 +10,6 @@ import java.io.*;
 
 @Controller
 public class HelloController {
-    StringBuilder API;
-
-
 
     @GetMapping("/hello")
     public String sayHello(
@@ -20,16 +17,6 @@ public class HelloController {
                     defaultValue = "Everyone"  ) String name, Model model) {
         model.addAttribute("user", name);
         return "hello";
-    }
-
-    @RestController
-    public class ApiController {
-
-        @GetMapping("/api")
-
-        public String sayA() {
-            return "AAAAAAAA";
-        }
     }
 
 }
